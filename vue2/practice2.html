@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<style type="text/css">
+		.IDGAF {
+			color:red;
+		}
+
+		.color-blue {
+			color:blue;
+		}
+
+		.is-loading {
+			background:red;
+		}
+		</style>
+	</head>
+	<body>
+
+		<div id ="root">
+			<ul>
+				<li v-for= "name in names" v-text="name"></li>
+			</ul>
+
+			<input type="text" v-model="newName" >
+			<button type="button" @click="addName">비온당..</button>
+
+			<h1 :class ="className">Let's see how class works in vue </h1>
+
+			<button type="button" :class = "{'is-loading' : isLoading}" @click="toggleThis">TOGGLE ME</button>
+			<button type="button" :disabled="disabled" @click="toggleDisabled">make this diassapeard</button>
+
+		</div>
+
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+		<script>
+
+		var app = new Vue ({
+			el : '#root',
+			data : {
+				names : ['raura','julia','james','joe'],
+				className : 'IDGAF',
+				newName : '',
+				isLoading: false,
+				disabled:false
+			},
+			methods: {
+				addName(){
+					this.names.push(this.newName);
+					this.newName='';
+				},
+				toggleThis(){
+					this.isLoading= true;
+				},
+				toggleDisabled(){
+					this.disabled= true;
+				}
+			}
+		});
+
+		</script>
+	</body>
+</html>

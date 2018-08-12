@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+
+		<h2>All Tasks</h2>
+		<ul>
+			<li v-for ="task in tasks" v-text="task.taskText"></li>
+		</ul>
+		<h2>Incompleted Tasks</h2>
+		<ul>
+			<li v-for = "task in incompleted" v-text="task.taskText"></li>
+		</ul>
+
+	</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+		<script >
+			var app = new Vue({
+				el : "#root",
+				data :{
+					tasks : [
+						{taskText : "감자 삶기",completed : false},
+						{taskText : "옥수수 삶기",completed : false},
+						{taskText : "해커톤 준비하기",completed : true},
+						{taskText : "고구마 삶기",completed : false}
+					]
+				},
+				computed: {
+					incompleted(){
+						return this.tasks.filter(l => !l.completed)
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
